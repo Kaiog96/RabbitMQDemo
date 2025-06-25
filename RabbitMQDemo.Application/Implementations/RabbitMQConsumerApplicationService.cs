@@ -16,10 +16,5 @@ namespace RabbitMQDemo.Application.Services
         {
             await _consumerService.StartConsumerAsync();
         }
-
-        public async Task ConsumeSingleMessageAsync()
-        {
-            await _consumerService.ConsumeSingleMessageAsync();
-        }
     }
 }

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using RabbitMQDemo.Domain.Interfaces;
+using RabbitMQDemo.Application.Interfaces;
 
 namespace RabbitMQDemo.ProducerAPI.Controllers
 {
@@ -7,17 +7,17 @@ namespace RabbitMQDemo.ProducerAPI.Controllers
     [Route("Api/")]
     public class SendController : ControllerBase
     {
-        private readonly IRabbitMQSenderService _sender;
+        private readonly IRabbitMQSendApplicationService _rabbitMQSendApplicationService;
 
-        public SendController(IRabbitMQSenderService sender)
+        public SendController(IRabbitMQSendApplicationService rabbitMQSendApplicationService)
         {
-            _sender = sender;
+            this._rabbitMQSendApplicationService = rabbitMQSendApplicationService;
         }
 
         [HttpPost("Send")]
         public async Task<IActionResult> SendMessage([FromBody] string message)
         {
-            await _sender.SendMessageAsync(message);
+            await _rabbitMQSendApplicationService.SendMessageAsync(message);
             return Ok("Mensagem enviada com sucesso.");
         }
     }

@@ -23,12 +23,5 @@ namespace RabbitMQDemo.Domain.Services.Implementations
                 await Task.CompletedTask;
             });
         }
-
-        public async Task ConsumeSingleMessageAsync()
-        {
-            var message = await _consumer.ConsumeSingleAsync();
-            if (message != null)
-                _handler.Handle(message);
-        }
     }
 }

@@ -7,25 +7,18 @@ namespace RabbitMQDemo.ConsumerAPI.Controllers
     [Route("Api/")]
     public class ConsumerController : ControllerBase
     {
-        private readonly IRabbitMQConsumerApplicationService _rabbitMQAppService;
+        private readonly IRabbitMQConsumerApplicationService _rabbitMQConsumerApplicationService;
 
-        public ConsumerController(IRabbitMQConsumerApplicationService rabbitMQAppService)
+        public ConsumerController(IRabbitMQConsumerApplicationService rabbitMQConsumerApplicationService)
         {
-            _rabbitMQAppService = rabbitMQAppService;
+            this._rabbitMQConsumerApplicationService = rabbitMQConsumerApplicationService;
         }
 
         [HttpPost("Start")]
         public async Task<IActionResult> Start()
         {
-            _ = Task.Run(() => _rabbitMQAppService.StartConsumerAsync()); // executa em background
+            _ = Task.Run(() => _rabbitMQConsumerApplicationService.StartConsumerAsync()); 
             return Ok("RabbitMQ consumer started.");
-        }
-
-        [HttpPost("Consume-one")]
-        public async Task<IActionResult> ConsumeOne()
-        {
-            await _rabbitMQAppService.ConsumeSingleMessageAsync();
-            return Ok("Single message consumed (if available).");
         }
     }
 }

@@ -3,7 +3,5 @@
     public interface IRabbitMQConsumerApplicationService
     {
         Task StartConsumerAsync();
-
-        Task ConsumeSingleMessageAsync();
     }
 }
