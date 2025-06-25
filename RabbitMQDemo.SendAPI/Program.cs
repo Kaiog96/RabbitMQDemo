@@ -1,10 +1,20 @@
+using RabbitMQDemo.Application.Interfaces;
+using RabbitMQDemo.Application.Services;
+using RabbitMQDemo.Domain.Interfaces;
+using RabbitMQDemo.Domain.Services.Implementations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IRabbitMQSendApplicationService, RabbitMQSendApplicationService>();
+builder.Services.AddScoped<IRabbitMQSenderService, RabbitMQSenderService>();
+
+
 var app = builder.Build();
+
 
 if (app.Environment.IsDevelopment())
 {

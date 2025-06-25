@@ -9,12 +9,12 @@ namespace RabbitMQDemo.Application.Services
 
         public RabbitMQSendApplicationService(IRabbitMQSenderService senderService)
         {
-            _senderService = senderService;
+            this._senderService = senderService;
         }
 
         public async Task SendMessageAsync(string content)
         {
-            await _senderService.SendMessageAsync(content);
+            await this._senderService.SendMessageAsync(content);
         }
     }
 }
